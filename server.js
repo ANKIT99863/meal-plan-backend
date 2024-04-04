@@ -10,11 +10,6 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cors());
 
-mongoose
-.connect(process.env.MONGODB_LINK)
-.then(() => console.log("We were connecting to MongoDB"))
-.catch((err) => console.log(err))
-
 app.use(routes);
 
 
@@ -22,4 +17,9 @@ const PORT = 7000 || process.env.port
 
 app.listen(PORT, () => {
     console.log(`I'm listenning on port ${PORT}`)
-})
+
+mongoose
+.connect(process.env.MONGODB_LINK)
+.then(() => console.log("We were connecting to MongoDB"))
+.catch((err) => console.log(err))
+});
